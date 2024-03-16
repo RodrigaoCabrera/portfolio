@@ -1,0 +1,46 @@
+---
+const skills = [
+  "HTML5",
+  "CSS3",
+  "JavaScript",
+  "ReactJs",
+  "Typescript",
+  "GraphQl",
+];
+---
+
+<article>
+  <h2>Skills</h2>
+  <section>
+    {skills.map((skill) => <span>{skill}</span>)}
+  </section>
+</article>
+
+<style>
+  article {
+    padding: 16px 0 12px;
+  }
+
+  h2 {
+    font: var(--h2);
+    color: var(--dark-color);
+    margin: 0 0 8px;
+  }
+  section {
+    display: flex;
+    gap: 0 12px;
+    padding: 12px 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+  span {
+    display: inline-block;
+    padding: 5px 16px;
+    background-color: var(--accent);
+    border-radius: var(--border-radius);
+    font: var(--l-medium);
+    color: var(--dark-color);
+    scroll-snap-align: start;
+  }
+</style>
