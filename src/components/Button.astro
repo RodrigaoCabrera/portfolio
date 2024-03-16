@@ -1,0 +1,35 @@
+---
+interface Props {
+  text: string;
+  type?: string;
+}
+
+const { text, type } = Astro.props;
+---
+
+<button class=`${type}`>
+  <slot name="before-text" />
+  <span class="textButton">{text}</span>
+  <slot name="after-text" />
+</button>
+<style>
+  button {
+    height: 40px;
+    width: 100%;
+    background-color: var(--accent);
+    border: none;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+  }
+  button.outline {
+    background-color: transparent;
+    border: 1px solid var(--accent);
+  }
+  span.textButton {
+    font: var(--l-bold);
+    color: var(--dark-color);
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+/* Components */
+import Button from "../components/Button.astro";
+
+/* Icons */
+import ContactIcon from "../icons/ContactIcon.astro";
+import DownloadIcon from "../icons/DownloadIcon.astro";
+---
+
+<section class="buttonsContainer">
+  <Button text="Contactar">
+    <ContactIcon slot="before-text" width="25" height="25" fill="#4F7396" />
+  </Button>
+  <Button text="Descargar Cv" type="outline">
+    <DownloadIcon
+      slot="before-text"
+      width="25"
+      height="25"
+      color="#4F7396"
+      fill="none"
+    />
+  </Button>
+</section>
+
+<style>
+  section {
+    display: flex;
+    gap: 0 10px;
+    padding: 12px 0;
+  }
+</style>
