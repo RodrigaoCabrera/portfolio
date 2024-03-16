@@ -25,9 +25,14 @@ const { image, profession, location } = Astro.props;
   .profileImageContainer {
     display: flex;
     margin: 16px 0 0;
+    aspect-ratio: 1 / 1;
+    max-width: 128px;
+    max-height: 128px;
+    margin-inline: auto;
+    margin-bottom: 16px;
   }
   img {
-    margin-inline: auto;
+    border-radius: 50%;
   }
 
   h1 {
