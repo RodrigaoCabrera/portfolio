@@ -1,0 +1,34 @@
+---
+/* Icons */
+import GithubIcon from "../icons/GithubIcon.astro";
+import LinkedinIcon from "../icons/LinkedinIcon.astro";
+
+/* Components */
+import SectionTitle from "./SectionTitle.astro";
+import ConectLinks from "../components/ConectLinks.astro";
+---
+
+<section>
+  <SectionTitle title="Conectar" />
+  <ConectLinks
+    link="https://github.com/RodrigaoCabrera"
+    user="rodrigaocabrera"
+    socialNetworkName="Github"
+  >
+    <GithubIcon width="24" height="24" />
+  </ConectLinks>
+
+  <ConectLinks
+    link="https://www.linkedin.com/in/rodrigocabrera19/"
+    user="rodrigocabrera19"
+    socialNetworkName="LinkedIn"
+  >
+    <LinkedinIcon width="24" height="24" fill="none" stroke="#0d141c" />
+  </ConectLinks>
+</section>
+
+<style>
+  section {
+    padding: 16px 0;
+  }
+</style>
