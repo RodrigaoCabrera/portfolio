@@ -1,0 +1,42 @@
+---
+interface Props {
+  image: string;
+  profession: string;
+  location: string;
+}
+
+const { image, profession, location } = Astro.props;
+---
+
+<section>
+  <div class="profileImageContainer">
+    <img src={image} alt="foto de perfil" />
+  </div>
+  <div>
+    <h1>{profession}</h1>
+    <p>{location}</p>
+  </div>
+</section>
+
+<style>
+  .profileImageContainer {
+    display: flex;
+    margin: 16px 0;
+  }
+  img {
+    margin-inline: auto;
+  }
+
+  h1 {
+    font: var(--h1);
+    color: var(--dark-color);
+    margin: 0;
+    text-align: center;
+  }
+  p {
+    font: var(--xl-regular);
+    color: var(--secondary-color);
+    margin: 0;
+    text-align: center;
+  }
+</style>
