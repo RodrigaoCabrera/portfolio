@@ -1,0 +1,70 @@
+---
+import "@fontsource-variable/inter";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Personal portfolio, desarrollo web, web development, programming, programación"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root {
+    --primary-color: #f7fafc;
+    --secondary-color: #4f7396;
+    --success: #088738;
+    --dark-color: #0d141c;
+    --accent: #e8edf2;
+
+    /* Fonts */
+    --font-family: "Inter Variable", sans-serif;
+
+    /* Fonts sizes */
+    --h1: 600 22px/27px var(--font-family);
+    --h2: 600 18px/22px var(--font-family);
+
+    --xl-regular: 300 16px/24px var(--font-family);
+    --xl-medium: 400 16px/24px var(--font-family);
+    --xl-semibold: 500 16px/24px var(--font-family);
+    --xl-bold: 600 16px/24px var(--font-family);
+
+    --l-regular: 300 14px/21px var(--font-family);
+    --l-medium: 400 14px/21px var(--font-family);
+    --l-semibold: 500 14px/21px var(--font-family);
+    --l-bold: 600 14px/21px var(--font-family);
+
+    --m-regular: 300 12px/18px var(--font-family);
+    --m-medium: 400 12px/18px var(--font-family);
+    --m-semibold: 500 12px/18px var(--font-family);
+    --m-bold: 600 12px/18px var(--font-family);
+
+    --s-regular: 300 10px/16px var(--font-family);
+    --s-medium: 400 10px/16px var(--font-family);
+    --s-semibold: 500 10px/16px var(--font-family);
+    --s-bold: 600 10px/16px var(--font-family);
+  }
+  html {
+    font-family: var(--font-family);
+    background: var(--primary-color);
+  }
+  body {
+    padding: 0;
+    margin: 0;
+  }
+</style>
