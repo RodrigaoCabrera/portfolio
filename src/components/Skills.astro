@@ -1,4 +1,5 @@
 ---
+import SectionTitle from "./SectionTitle.astro";
 const skills = [
   "HTML5",
   "CSS3",
@@ -10,7 +11,7 @@ const skills = [
 ---
 
 <article>
-  <h2>Skills</h2>
+  <SectionTitle title="Skills" />
   <section>
     {skills.map((skill) => <span>{skill}</span>)}
   </section>

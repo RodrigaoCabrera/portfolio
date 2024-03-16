@@ -1,9 +1,10 @@
 ---
+import SectionTitle from "./SectionTitle.astro";
 import ExperienceItem from "../components/ExperienceItem.astro";
 ---
 
 <article>
-  <h2>Experiencia laboral</h2>
+  <SectionTitle title="Experiencia laboral" />
   <ExperienceItem
     title="Desarrollador de software"
     description="San Francisco Bay area. Ejemplo de empresa"
@@ -20,10 +21,7 @@ import ExperienceItem from "../components/ExperienceItem.astro";
 </article>
 
 <style>
-  h2 {
-    font: var(--h2);
-    color: var(--dark-color);
-    margin: 0;
-    padding: 16px 0 8px;
+  article {
+    margin: 16px 0;
   }
 </style>
