@@ -1,0 +1,19 @@
+---
+import Card from "./Card.astro";
+---
+
+<section>
+  <Card image="../../public/card1.png" title="Personal Portfolio" />
+  <Card image="../../public/card2.png" title="E-commerce Website" />
+  <Card image="../../public/card1.png" title="Personal Portfolio" />
+  <Card image="../../public/card2.png" title="E-commerce Website" />
+</section>
+
+<style>
+  section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(163px, 1fr));
+    gap: 12px;
+    padding: 16px 0;
+  }
+</style>
