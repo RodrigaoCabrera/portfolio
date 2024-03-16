@@ -1,0 +1,76 @@
+---
+import ExperienceIcon from "../icons/ExperienceIcon.astro";
+interface Props {
+  title: string;
+  description: string;
+  status?: string;
+}
+
+const { title, description, status }: Props = Astro.props;
+const iconFillColor = status === "active" ? "currentColor" : "#4f7396";
+---
+
+<section>
+  <div class="experienceIcon">
+    <ExperienceIcon width="24" height="25" fill={iconFillColor} />
+  </div>
+  <div class="experienceContent">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+  <div class=`experienceDot ${status}`></div>
+</section>
+
+<style>
+  section {
+    display: flex;
+    gap: 0 16px;
+    align-items: start;
+    padding: 12px 0;
+  }
+
+  .experienceIcon {
+    background-color: var(--accent);
+    padding: 12px;
+    border-radius: var(--secondary-border-radius);
+    display: flex;
+  }
+
+  h3 {
+    font: var(--xl-medium);
+    color: var(--dark-color);
+    margin: 0 0 8px;
+    line-height: 12px;
+  }
+  p {
+    font: var(--l-regular);
+    color: var(--secondary-color);
+    margin: 0;
+  }
+
+  .experienceDot {
+    width: 14px;
+    height: 12px;
+    border-radius: 50px;
+    background-color: var(--accent);
+  }
+  .experienceDot.active {
+    animation: pulse 2s infinite;
+    background-color: var(--success);
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+    70% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }
+</style>
