@@ -1,0 +1,85 @@
+---
+import HomeIcon from "../icons/HomeIcon.astro";
+import ContactIcon from "../icons/ContactIcon.astro";
+import ExperienceIcon from "../icons/ExperienceIcon.astro";
+import ProjectsIcon from "../icons/ProjectsIcon.astro";
+---
+
+<footer>
+  <section>
+    <a href="#home">
+      <div class="icon" id="home">
+        <HomeIcon width="25" height="25" fill="#4f7396" />
+      </div>
+    </a>
+    <a href="#experience">
+      <div class="icon" id="experience">
+        <ExperienceIcon width="25" height="25" fill="#4f7396" />
+      </div>
+    </a>
+    <a href="#projects">
+      <div class="icon" id="projects">
+        <ProjectsIcon width="24" height="24" fill="none" stroke="#4f7396" />
+      </div>
+    </a>
+    <a href="#contact">
+      <div class="icon" id="contact">
+        <ContactIcon width="25" height="25" fill="#4f7396" />
+      </div>
+    </a>
+  </section>
+</footer>
+
+<script>
+  const footerNavLinks = document.querySelectorAll(".icon");
+
+  footerNavLinks.forEach((footerNavLink) => {
+    footerNavLink.addEventListener("click", (e) => {
+      footerNavLinks.forEach((link) => {
+        link.classList.remove("active");
+      });
+
+      footerNavLink.classList.add("active");
+    });
+  });
+</script>
+
+<style>
+  footer {
+    height: 53px;
+  }
+  section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    border-top: 1px solid var(--accent);
+    gap: 0 5px;
+    background-color: var(--primary-color);
+  }
+
+  a {
+    border-radius: var(--secondary-border-radius);
+    text-decoration: none;
+  }
+  div.icon {
+    display: flex;
+    padding: 16px;
+    border-radius: var(--secondary-border-radius);
+  }
+  div.active {
+    background-color: var(--accent);
+  }
+  div.active svg {
+    fill: var(--dark-color);
+  }
+  div#projects.active svg {
+    stroke: var(--dark-color);
+    fill: none;
+  }
+</style>
