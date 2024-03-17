@@ -40,11 +40,22 @@ const { image, profession, location } = Astro.props;
     color: var(--dark-color);
     margin: 0;
     text-align: center;
+
+    animation: reduce linear both;
+    animation-timeline: scroll(root);
+    animation-range: 150px 200px;
   }
   p {
     font: var(--xl-regular);
     color: var(--secondary-color);
     margin: 0;
     text-align: center;
+  }
+
+  @keyframes reduce {
+    to {
+      scale: 70%;
+      z-index: -1;
+    }
   }
 </style>
