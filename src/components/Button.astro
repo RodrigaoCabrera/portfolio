@@ -23,13 +23,38 @@ const { text, type } = Astro.props;
     align-items: center;
     justify-content: center;
     gap: 0 10px;
+
+    animation: rounded-button linear both;
+    animation-timeline: scroll(root);
+    animation-range: 270px 275px;
   }
   button.outline {
-    background-color: transparent;
+    background-color: var(--primary-color);
     border: 1px solid var(--accent);
   }
   span.textButton {
     font: var(--l-bold);
     color: var(--dark-color);
+
+    animation: hiden-text linear both;
+    animation-timeline: scroll(root);
+    animation-range: 270px 275px;
+    transition: opacity 1s ease;
+  }
+
+  @keyframes rounded-button {
+    to {
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      margin-left: auto;
+      margin-right: 16px;
+    }
+  }
+  @keyframes hiden-text {
+    to {
+      opacity: 0;
+      display: none;
+    }
   }
 </style>

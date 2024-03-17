@@ -8,24 +8,46 @@ import DownloadIcon from "../icons/DownloadIcon.astro";
 ---
 
 <section class="buttonsContainer">
-  <Button text="Contactar">
-    <ContactIcon slot="before-text" width="25" height="25" fill="#4F7396" />
-  </Button>
-  <Button text="Descargar Cv" type="outline">
-    <DownloadIcon
-      slot="before-text"
-      width="25"
-      height="25"
-      color="#4F7396"
-      fill="none"
-    />
-  </Button>
+  <div>
+    <Button text="Contactar">
+      <ContactIcon slot="before-text" width="25" height="25" fill="#4F7396" />
+    </Button>
+    <Button text="Descargar Cv" type="outline">
+      <DownloadIcon
+        slot="before-text"
+        width="25"
+        height="25"
+        color="#4F7396"
+        fill="none"
+      />
+    </Button>
+  </div>
 </section>
 
 <style>
   section {
+    height: 64px;
+  }
+  div {
     display: flex;
-    gap: 0 10px;
+    gap: 10px;
     padding: 12px 0;
+    z-index: 1000;
+    top: 0;
+
+    animation: reduce-buttons linear forwards;
+    animation-timeline: scroll(root);
+    animation-range: 280px 315px;
+  }
+
+  @keyframes reduce-buttons {
+    to {
+      width: 50%;
+      flex-direction: column;
+      margin-left: auto;
+      position: fixed;
+      right: 0;
+      top: 54px;
+    }
   }
 </style>
