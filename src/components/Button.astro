@@ -2,20 +2,66 @@
 interface Props {
   text: string;
   type?: string;
+  href?: string;
+  fileName?: string;
 }
 
-const { text, type } = Astro.props;
+const { text, type, href, fileName } = Astro.props;
 ---
 
-<button class=`${type}`>
-  <slot name="before-text" />
-  <span class="textButton">{text}</span>
-  <slot name="after-text" />
-</button>
+<>
+  {
+     href ? 
+    <a class=`${type}` href={href} download={fileName} id={fileName ? 'downloadLink' : 'link'}>
+      <slot name="before-text" />
+      <span class="textButton">{text}</span>
+      <slot name="after-text" />
+    </a> : 
+    <button class=`${type}`>
+      <slot name="before-text" />
+      <span class="textButton">{text}</span>
+      <slot name="after-text" />
+    </button>
+  }
+</>
+<script>
+  // Supongamos que tienes un enlace de descarga con el id "descargar"
+  var downloadLink = document.getElementById(
+    "downloadLink"
+  ) as HTMLAnchorElement;
+  console.log(downloadLink);
+  downloadLink.addEventListener("click", function (event) {
+    // Prevenir la descarga inmediata
+    event.preventDefault();
+
+    // Aquí puedes iniciar tu animación
+    startAnimation();
+
+    // Luego de determinado tiempo se inicia la descarga
+    setTimeout(startDownload, 1500);
+  });
+
+  function startAnimation() {
+    downloadLink.classList.add("animation");
+  }
+
+  function startDownload() {
+    downloadLink.classList.remove("animation");
+    const newDownloadLink = document.createElement("a");
+    newDownloadLink.href = downloadLink.href;
+    newDownloadLink.download = downloadLink.download;
+
+    document.body.appendChild(newDownloadLink);
+    newDownloadLink.click();
+    document.body.removeChild(newDownloadLink);
+  }
+</script>
 <style>
-  button {
+  button,
+  a {
     height: 40px;
     width: 100%;
+    min-width: 100%;
     background-color: var(--accent);
     border: none;
     border-radius: var(--border-radius);
@@ -23,12 +69,16 @@ const { text, type } = Astro.props;
     align-items: center;
     justify-content: center;
     gap: 0 10px;
+    justify-self: center;
+    position: relative;
+    overflow: hidden;
 
     animation: rounded-button linear both;
     animation-timeline: scroll(root);
     animation-range: 270px 275px;
   }
-  button.outline {
+  button.outline,
+  a.outline {
     background-color: var(--primary-color);
     border: 1px solid var(--accent);
   }
@@ -55,6 +105,113 @@ const { text, type } = Astro.props;
     to {
       opacity: 0;
       display: none;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+</style>
+
+<style is:global>
+  div#buttonsRow {
+    container-type: inline-size;
+  }
+
+  a.animation svg#download {
+    animation: hide-button-content 0.9s ease forwards;
+  }
+  @keyframes hide-button-content {
+    0% {
+      opacity: 0.8;
+    }
+    10% {
+      opacity: 0;
+      display: none;
+    }
+    70% {
+      opacity: 0;
+      display: none;
+    }
+    80% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 1;
+      display: inline-block;
+    }
+  }
+
+  a#downloadLink #arrowDown {
+    position: absolute;
+    left: 50%;
+    transform: translate3d(-50%, -30px, 0);
+    top: 0;
+  }
+
+  a.animation#downloadLink #arrowDown {
+    animation: arrowDown-animation 0.6s linear forwards;
+  }
+  @keyframes arrowDown-animation {
+    0% {
+      transform: translate3d(-50%, 0%, 0);
+    }
+    10% {
+      transform: translate3d(-50%, -50%, 0);
+      top: 50%;
+    }
+    30% {
+      transform: translate3d(-50%, -50%, 0);
+      top: 50%;
+    }
+    60% {
+      transform: translate3d(-50%, -50%, 0);
+      top: 50%;
+    }
+    80% {
+      transform: translate3d(-50%, -50%, 0);
+      top: 50%;
+    }
+    100% {
+      transform: translate3d(-50%, 350%, 0);
+    }
+  }
+
+  @container (min-width: 50px) {
+    a.animation span.textButton {
+      animation: hide-button-content 1.5s ease forwards;
+    }
+    a#downloadLink.animation {
+      animation: download-animation 0.6s linear 0.3s forwards;
+    }
+    @keyframes download-animation {
+      0% {
+        width: 100%;
+        min-width: 100%;
+        border-radius: 50px;
+      }
+      20% {
+        width: 45px;
+        border-radius: 50px;
+        min-width: 45px;
+      }
+      90% {
+        width: 45px;
+        border-radius: 50px;
+        min-width: 45px;
+      }
+      100% {
+        width: 100%;
+        min-width: 100%;
+      }
+    }
+
+    a.animation svg#download {
+      animation: hide-button-content 1.5s ease forwards;
+    }
+
+    a.animation#downloadLink #arrowDown {
+      animation: arrowDown-animation 0.4s linear 0.6s forwards;
     }
   }
 </style>

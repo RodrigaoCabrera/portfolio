@@ -5,18 +5,32 @@ import Button from "../components/Button.astro";
 /* Icons */
 import ContactIcon from "../icons/ContactIcon.astro";
 import DownloadIcon from "../icons/DownloadIcon.astro";
+import ArrowDownIcon from "../icons/ArrowDownIcon.astro";
 ---
 
 <section class="buttonsContainer">
-  <div>
+  <div id="buttonsRow">
     <Button text="Contactar">
       <ContactIcon slot="before-text" width="25" height="25" fill="#4F7396" />
     </Button>
-    <Button text="Descargar Cv" type="outline">
+    <Button
+      text="Descargar Cv"
+      type="outline"
+      href="../../public/Frontend-Web-developer-Rodrigo-Cabrera.pdf"
+      fileName="Frontend Web developer - Rodrigo Cabrera"
+    >
       <DownloadIcon
         slot="before-text"
         width="25"
         height="25"
+        color="#4F7396"
+        fill="none"
+      />
+      <ArrowDownIcon
+        slot="after-text"
+        width="24"
+        height="24"
+        stroke="currentColor"
         color="#4F7396"
         fill="none"
       />
@@ -29,7 +43,9 @@ import DownloadIcon from "../icons/DownloadIcon.astro";
     height: 64px;
   }
   div {
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
     gap: 10px;
     padding: 12px 0;
     z-index: 1000;
@@ -42,11 +58,12 @@ import DownloadIcon from "../icons/DownloadIcon.astro";
 
   @keyframes reduce-buttons {
     to {
-      width: 50%;
+      width: 45px;
+      display: flex;
       flex-direction: column;
       margin-left: auto;
       position: fixed;
-      right: 0;
+      right: 16px;
       top: 54px;
     }
   }
