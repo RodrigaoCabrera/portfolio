@@ -5,26 +5,26 @@ import LinkedinIcon from "../icons/LinkedinIcon.astro";
 
 /* Components */
 import SectionTitle from "./SectionTitle.astro";
-import ConectLinks from "../components/ConectLinks.astro";
+import ContactLinks from "./ContactLinks.astro";
 ---
 
 <section>
-  <SectionTitle title="Conectar" />
-  <ConectLinks
+  <SectionTitle title="Contacto" />
+  <ContactLinks
     link="https://github.com/RodrigaoCabrera"
     user="rodrigaocabrera"
     socialNetworkName="Github"
   >
     <GithubIcon width="24" height="24" />
-  </ConectLinks>
+  </ContactLinks>
 
-  <ConectLinks
+  <ContactLinks
     link="https://www.linkedin.com/in/rodrigocabrera19/"
     user="rodrigocabrera19"
     socialNetworkName="LinkedIn"
   >
     <LinkedinIcon width="24" height="24" fill="none" stroke="#0d141c" />
-  </ConectLinks>
+  </ContactLinks>
 </section>
 
 <style>
