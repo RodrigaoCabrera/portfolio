@@ -1,16 +1,23 @@
 ---
+import { Image } from "astro:assets";
+import image from "../../public/profile.png";
 interface Props {
-  image: string;
   profession: string;
   location: string;
 }
 
-const { image, profession, location } = Astro.props;
+const { profession, location } = Astro.props;
 ---
 
 <section>
   <div class="profileImageContainer">
-    <img src={image} alt="foto de perfil" />
+    <Image
+      src={image}
+      alt="foto de perfil"
+      width={128}
+      height={128}
+      loading="eager"
+    />
   </div>
   <div>
     <h1>{profession}</h1>
@@ -26,8 +33,8 @@ const { image, profession, location } = Astro.props;
     display: flex;
     margin: 16px 0 0;
     aspect-ratio: 1 / 1;
-    max-width: 128px;
-    max-height: 128px;
+    width: 128px;
+    height: 128px;
     margin-inline: auto;
     margin-bottom: 16px;
   }

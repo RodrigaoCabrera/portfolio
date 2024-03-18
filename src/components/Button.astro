@@ -12,12 +12,12 @@ const { text, type, href, fileName } = Astro.props;
 <>
   {
      href ? 
-    <a class=`${type}` href={href} download={fileName} id={fileName ? 'downloadLink' : 'link'}>
+    <a class=`${type}` href={href} download={fileName} id={fileName ? 'downloadLink' : 'link'} aria-label="descargar cv">
       <slot name="before-text" />
       <span class="textButton">{text}</span>
       <slot name="after-text" />
     </a> : 
-    <button class=`${type}`>
+    <button class=`${type}` aria-label="Contactar">
       <slot name="before-text" />
       <span class="textButton">{text}</span>
       <slot name="after-text" />

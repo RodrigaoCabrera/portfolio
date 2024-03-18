@@ -1,6 +1,7 @@
 ---
+import { Image } from "astro:assets";
 interface Props {
-  image: string;
+  image: ImageMetadata;
   title: string;
 }
 
@@ -9,20 +10,26 @@ const { image, title }: Props = Astro.props;
 
 <article>
   <div class="imageContainer">
-    <img src={image} alt="portfolio personal" loading="lazy" />
+    <Image
+      width={173}
+      height={173}
+      src={image}
+      alt="portfolio personal"
+      loading="lazy"
+    />
   </div>
   <p>{title}</p>
 </article>
 
 <style>
   .imageContainer {
-    aspect-ratio: 1 / 1;
     width: fit-content;
     height: fit-content;
   }
   img {
     width: 100%;
     height: 100%;
+    aspect-ratio: 1 / 1;
   }
   p {
     font: var(--xl-medium);
