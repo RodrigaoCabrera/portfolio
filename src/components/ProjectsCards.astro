@@ -6,7 +6,7 @@ import Card from "./Card.astro";
 <section>
   {
     projects.map(({ image, title, type, id }) => (
-      <Card image={image} title={title} type={type} />
+      <Card image={image} title={title} type={type} id={id} />
     ))
   }
 </section>

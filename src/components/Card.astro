@@ -1,28 +1,34 @@
 ---
 import { Image } from "astro:assets";
 interface Props {
+  id: number;
   image: ImageMetadata;
   title: string;
   type?: string;
 }
 
-const { image, title }: Props = Astro.props;
+const { image, title, id }: Props = Astro.props;
 ---
 
-<article>
-  <div class="imageContainer">
-    <Image
-      width={173}
-      height={173}
-      src={image}
-      alt="portfolio personal"
-      loading="lazy"
-    />
-  </div>
-  <p>{title}</p>
-</article>
+<a href=`/${id}`>
+  <article>
+    <div class="imageContainer">
+      <Image
+        width={173}
+        height={173}
+        src={image}
+        alt="portfolio personal"
+        loading="lazy"
+      />
+    </div>
+    <p>{title}</p>
+  </article>
+</a>
 
 <style>
+  a {
+    text-decoration: none;
+  }
   .imageContainer {
     width: fit-content;
     height: fit-content;
