@@ -1,5 +1,6 @@
 ---
 import SectionTitle from "./SectionTitle.astro";
+import Badge from "./Badge.astro";
 const skills = [
   "HTML5",
   "CSS3",
@@ -13,7 +14,7 @@ const skills = [
 <article>
   <SectionTitle title="Skills" />
   <section>
-    {skills.map((skill) => <span>{skill}</span>)}
+    {skills.map((tecnology) => <Badge tecnology={tecnology} />)}
   </section>
 </article>
 
@@ -34,14 +35,5 @@ const skills = [
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     overscroll-behavior-x: contain;
-  }
-  span {
-    display: inline-block;
-    padding: 5px 16px;
-    background-color: var(--accent);
-    border-radius: var(--secondary-border-radius);
-    font: var(--l-medium);
-    color: var(--dark-color);
-    scroll-snap-align: start;
   }
 </style>

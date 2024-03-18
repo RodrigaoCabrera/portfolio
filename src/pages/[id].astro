@@ -1,0 +1,122 @@
+---
+import projects from "../data/projects";
+
+/* Astro components */
+import { Image } from "astro:assets";
+
+/* Components */
+import Layout from "../layouts/Layout.astro";
+import Badge from "../components/Badge.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import Button from "../components/Button.astro";
+
+export async function getStaticPaths() {
+  return projects.map(({ id, title, fullImage, type, technologies }) => {
+    return {
+      params: { id },
+      props: { title, fullImage, type, technologies },
+    };
+  });
+}
+
+const { title, fullImage, type, technologies } = Astro.props;
+---
+
+<Layout title="Proyectos">
+  <section>
+    <Image src={fullImage} alt="Captura pantalla de página de destino" />
+  </section>
+
+  <main>
+    <article>
+      <SectionTitle title={title} isH1={true} />
+      <span class="projectType">{type}</span>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
+        adipisci eaque, unde, dolor voluptatibus omnis optio ab inventore harum
+        facilis possimus cumque ex animi porro nihil quae. Impedit, magni at.
+      </p>
+    </article>
+
+    <section class="technologies">
+      <SectionTitle title="Tecnologías" />
+      <div>
+        {
+          technologies?.map((tecnology: string) => (
+            <Badge tecnology={tecnology} />
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="callToActionButtons">
+      <a href="#"><span class="textButton">Ver Proyecto</span></a>
+      <a class="outline" href="#"><span class="textButton">Ver Código</span></a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    width: min(888px, 100% - 32px);
+    margin-inline: auto;
+  }
+  article,
+  section.technologies,
+  section.callToActionButtons {
+    margin-top: 16px;
+  }
+  span.projectType {
+    display: inline-block;
+    padding: 3px 8px;
+    background-color: var(--accent);
+    border-radius: 5px;
+    font: var(--s-medium);
+    color: var(--dark-color);
+    margin-bottom: 16px;
+  }
+
+  p {
+    font: var(--xl-regular);
+    color: var(--dark-color);
+    margin: 0;
+  }
+
+  .technologies div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  section.callToActionButtons {
+    display: flex;
+    justify-content: stretch;
+    gap: 10px;
+    padding: 16px 0 32px;
+  }
+
+  a {
+    height: 40px;
+    flex: 1;
+    background-color: var(--accent);
+    border: none;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0 10px;
+    text-decoration: none;
+  }
+  a.outline {
+    background-color: var(--primary-color);
+    border: 1px solid var(--accent);
+  }
+  span.textButton {
+    font: var(--l-bold);
+    color: var(--dark-color);
+
+    animation: hiden-text linear both;
+    animation-timeline: scroll(root);
+    animation-range: 270px 275px;
+    transition: opacity 1s ease;
+  }
+</style>

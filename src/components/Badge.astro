@@ -1,0 +1,20 @@
+---
+interface Props {
+  tecnology: string;
+}
+const { tecnology }: Props = Astro.props;
+---
+
+<span>{tecnology}</span>
+
+<style>
+  span {
+    display: inline-block;
+    padding: 5px 16px;
+    background-color: var(--accent);
+    border-radius: var(--secondary-border-radius);
+    font: var(--l-medium);
+    color: var(--dark-color);
+    scroll-snap-align: start;
+  }
+</style>
