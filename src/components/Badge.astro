@@ -1,20 +1,28 @@
 ---
 interface Props {
-  tecnology: string;
+  text: string;
+  mode: string;
 }
-const { tecnology }: Props = Astro.props;
+const { text, mode }: Props = Astro.props;
 ---
 
-<span>{tecnology}</span>
+<span class={mode}>{text}</span>
 
 <style>
   span {
     display: inline-block;
-    padding: 5px 16px;
     background-color: var(--accent);
     border-radius: var(--secondary-border-radius);
-    font: var(--l-medium);
     color: var(--dark-color);
     scroll-snap-align: start;
+  }
+  span.large {
+    padding: 5px 16px;
+    font: var(--l-medium);
+  }
+  span.mini {
+    padding: 3px 8px;
+    font: var(--s-medium);
+    border-radius: 5px;
   }
 </style>
