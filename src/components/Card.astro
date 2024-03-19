@@ -19,6 +19,7 @@ const { image, title, id }: Props = Astro.props;
         src={image}
         alt="portfolio personal"
         loading="lazy"
+        style={`view-transition-name: project-${id}`}
       />
     </div>
     <p>{title}</p>

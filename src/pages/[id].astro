@@ -8,7 +8,6 @@ import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import Badge from "../components/Badge.astro";
 import SectionTitle from "../components/SectionTitle.astro";
-import Button from "../components/Button.astro";
 
 export async function getStaticPaths() {
   return projects.map(({ id, title, fullImage, type, technologies }) => {
@@ -19,12 +18,17 @@ export async function getStaticPaths() {
   });
 }
 
+const { id } = Astro.params;
 const { title, fullImage, type, technologies } = Astro.props;
 ---
 
 <Layout title="Proyectos">
   <section>
-    <Image src={fullImage} alt="Captura pantalla de página de destino" />
+    <Image
+      style={`view-transition-name: project-${id}`}
+      src={fullImage}
+      alt="Captura pantalla de página de destino"
+    />
   </section>
 
   <main>
