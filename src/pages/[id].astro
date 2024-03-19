@@ -54,73 +54,74 @@ const { title, fullImage, type, technologies } = Astro.props;
     </section>
 
     <section class="callToActionButtons">
-      <a href="#"><span class="textButton">Ver Proyecto</span></a>
-      <a class="outline" href="#"><span class="textButton">Ver Código</span></a>
+      <a href="#" class="btn"><span class="textButton">Ver Proyecto</span></a>
+      <a class="outline btn" href="#"
+        ><span class="textButton">Ver Código</span></a
+      >
     </section>
   </main>
+  <style is:inline>
+    main {
+      width: min(888px, 100% - 32px);
+      margin-inline: auto;
+    }
+    article,
+    section.technologies,
+    section.callToActionButtons {
+      margin-top: 16px;
+    }
+    span.projectType {
+      display: inline-block;
+      padding: 3px 8px;
+      background-color: var(--accent);
+      border-radius: 5px;
+      font: var(--s-medium);
+      color: var(--dark-color);
+      margin-bottom: 16px;
+    }
+
+    p {
+      font: var(--xl-regular);
+      color: var(--dark-color);
+      margin: 0;
+    }
+
+    .technologies div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    section.callToActionButtons {
+      display: flex;
+      justify-content: stretch;
+      gap: 10px;
+      padding: 16px 0 32px;
+    }
+
+    a.btn {
+      height: 40px;
+      flex: 1;
+      background-color: var(--accent);
+      border: none;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0 10px;
+      text-decoration: none;
+    }
+    a.btn.outline {
+      background-color: var(--primary-color);
+      border: 1px solid var(--accent);
+    }
+    span.textButton {
+      font: var(--l-bold);
+      color: var(--dark-color);
+
+      animation: hiden-text linear both;
+      animation-timeline: scroll(root);
+      animation-range: 270px 275px;
+      transition: opacity 1s ease;
+    }
+  </style>
 </Layout>
-
-<style>
-  main {
-    width: min(888px, 100% - 32px);
-    margin-inline: auto;
-  }
-  article,
-  section.technologies,
-  section.callToActionButtons {
-    margin-top: 16px;
-  }
-  span.projectType {
-    display: inline-block;
-    padding: 3px 8px;
-    background-color: var(--accent);
-    border-radius: 5px;
-    font: var(--s-medium);
-    color: var(--dark-color);
-    margin-bottom: 16px;
-  }
-
-  p {
-    font: var(--xl-regular);
-    color: var(--dark-color);
-    margin: 0;
-  }
-
-  .technologies div {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  section.callToActionButtons {
-    display: flex;
-    justify-content: stretch;
-    gap: 10px;
-    padding: 16px 0 32px;
-  }
-
-  a {
-    height: 40px;
-    flex: 1;
-    background-color: var(--accent);
-    border: none;
-    border-radius: var(--border-radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0 10px;
-    text-decoration: none;
-  }
-  a.outline {
-    background-color: var(--primary-color);
-    border: 1px solid var(--accent);
-  }
-  span.textButton {
-    font: var(--l-bold);
-    color: var(--dark-color);
-
-    animation: hiden-text linear both;
-    animation-timeline: scroll(root);
-    animation-range: 270px 275px;
-    transition: opacity 1s ease;
-  }
-</style>
