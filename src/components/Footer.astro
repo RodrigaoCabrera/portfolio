@@ -31,15 +31,17 @@ import ProjectsIcon from "../icons/ProjectsIcon.astro";
 </footer>
 
 <script>
-  const footerNavLinks = document.querySelectorAll(".icon");
+  document.addEventListener("astro:page-load", () => {
+    const footerNavLinks = document.querySelectorAll(".icon");
 
-  footerNavLinks.forEach((footerNavLink) => {
-    footerNavLink.addEventListener("click", (e) => {
-      footerNavLinks.forEach((link) => {
-        link.classList.remove("active");
+    footerNavLinks.forEach((footerNavLink) => {
+      footerNavLink.addEventListener("click", (e) => {
+        footerNavLinks.forEach((link) => {
+          link.classList.remove("active");
+        });
+
+        footerNavLink.classList.add("active");
       });
-
-      footerNavLink.classList.add("active");
     });
   });
 </script>
