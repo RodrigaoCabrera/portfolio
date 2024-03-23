@@ -25,9 +25,9 @@ const { title, fullImage, type, technologies } = Astro.props;
 <Layout title="Proyectos" headerText="Proyectos">
   <section>
     <Image
-      style={`view-transition-name: project-${id}`}
       src={fullImage}
       alt="Captura pantalla de página de destino"
+      transition:name=`project-image-${id}`
     />
   </section>
 

@@ -1,6 +1,8 @@
 ---
 import "@fontsource-variable/inter";
 
+/* Astro componentes */
+import { ViewTransitions } from "astro:transitions";
 /* Components */
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -26,66 +28,65 @@ const { title, headerText, animateHeader } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body>
     <Header text={headerText} animate={animateHeader} />
     <slot />
     <Footer />
-  </body>
-</html>
-<style is:global>
-  :root {
-    --primary-color: #f7fafc;
-    --secondary-color: #4f7396;
-    --success: #088738;
-    --dark-color: #0d141c;
-    --accent: #e8edf2;
+    <style is:global>
+      :root {
+        --primary-color: #f7fafc;
+        --secondary-color: #4f7396;
+        --success: #088738;
+        --dark-color: #0d141c;
+        --accent: #e8edf2;
 
-    /* Fonts */
-    --font-family: "Inter Variable", sans-serif;
+        /* Fonts */
+        --font-family: "Inter Variable", sans-serif;
 
-    /* Fonts sizes */
-    --h1: 600 22px/27px var(--font-family);
-    --h2: 600 18px/22px var(--font-family);
+        /* Fonts sizes */
+        --h1: 600 22px/27px var(--font-family);
+        --h2: 600 18px/22px var(--font-family);
 
-    --xl-regular: 400 16px/24px var(--font-family);
-    --xl-medium: 500 16px/24px var(--font-family);
-    --xl-semibold: 600 16px/24px var(--font-family);
-    --xl-bold: 700 16px/24px var(--font-family);
+        --xl-regular: 400 16px/24px var(--font-family);
+        --xl-medium: 500 16px/24px var(--font-family);
+        --xl-semibold: 600 16px/24px var(--font-family);
+        --xl-bold: 700 16px/24px var(--font-family);
 
-    --l-regular: 400 14px/21px var(--font-family);
-    --l-medium: 500 14px/21px var(--font-family);
-    --l-semibold: 600 14px/21px var(--font-family);
-    --l-bold: 700 14px/21px var(--font-family);
+        --l-regular: 400 14px/21px var(--font-family);
+        --l-medium: 500 14px/21px var(--font-family);
+        --l-semibold: 600 14px/21px var(--font-family);
+        --l-bold: 700 14px/21px var(--font-family);
 
-    --m-regular: 400 12px/18px var(--font-family);
-    --m-medium: 500 12px/18px var(--font-family);
-    --m-semibold: 500 12px/18px var(--font-family);
-    --m-bold: 700 12px/18px var(--font-family);
+        --m-regular: 400 12px/18px var(--font-family);
+        --m-medium: 500 12px/18px var(--font-family);
+        --m-semibold: 500 12px/18px var(--font-family);
+        --m-bold: 700 12px/18px var(--font-family);
 
-    --s-regular: 400 10px/16px var(--font-family);
-    --s-medium: 500 10px/16px var(--font-family);
-    --s-semibold: 600 10px/16px var(--font-family);
-    --s-bold: 700 10px/16px var(--font-family);
+        --s-regular: 400 10px/16px var(--font-family);
+        --s-medium: 500 10px/16px var(--font-family);
+        --s-semibold: 600 10px/16px var(--font-family);
+        --s-bold: 700 10px/16px var(--font-family);
 
-    /* Layout */
-    --border-radius: 12px;
-    --secondary-border-radius: 8px;
-  }
+        /* Layout */
+        --border-radius: 12px;
+        --secondary-border-radius: 8px;
+      }
 
-  html {
-    font-family: var(--font-family);
-    background: var(--primary-color);
-    scroll-behavior: smooth;
-  }
-  body {
-    padding: 0;
-    margin: 0;
-  }
-</style>
+      html {
+        font-family: var(--font-family);
+        background: var(--primary-color);
+        scroll-behavior: smooth;
+      }
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
 
-<script>
-  if (document.startViewTransition) {
+    <script>
+      /* if (document.startViewTransition) {
     window.navigation.addEventListener("navigate", (event) => {
       const toUrl = new URL(event.destination.url);
       if (location.origin !== toUrl.origin) return;
@@ -104,5 +105,7 @@ const { title, headerText, animateHeader } = Astro.props;
         },
       });
     });
-  }
-</script>
+  } */
+    </script>
+  </body>
+</html>

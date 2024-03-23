@@ -22,40 +22,46 @@ const { text, type, href, fileName } = Astro.props;
       <span class="textButton">{text}</span>
       <slot name="after-text" />
     </button>
+    
   }
+  
 </>
+
 <script>
-  // Supongamos que tienes un enlace de descarga con el id "descargar"
-  var downloadLink = document.getElementById(
-    "downloadLink"
-  ) as HTMLAnchorElement;
-  console.log(downloadLink);
-  downloadLink.addEventListener("click", function (event) {
-    // Prevenir la descarga inmediata
-    event.preventDefault();
+  document.addEventListener('astro:page-load', () => {
+    const downloadLink = document.getElementById("downloadLink") as HTMLAnchorElement;
 
-    // Aquí puedes iniciar tu animación
-    startAnimation();
+    downloadLink.addEventListener("click", function (event) {
+      // Prevenir la descarga inmediata
+      event.preventDefault();
 
-    // Luego de determinado tiempo se inicia la descarga
-    setTimeout(startDownload, 1500);
+      // Se inicia la animación
+      startAnimation();
+
+      // Luego de determinado tiempo se inicia la descarga
+      setTimeout(startDownload, 1500);
+    });
+
+    function startAnimation() {
+      downloadLink.classList.add("animation");
+      
+      console.log(downloadLink.classList)
+    }
+
+    function startDownload() {
+      downloadLink.classList.remove("animation");
+      const newDownloadLink = document.createElement("a");
+      newDownloadLink.href = downloadLink.href;
+      newDownloadLink.download = downloadLink.download;
+
+      document.body.appendChild(newDownloadLink);
+      newDownloadLink.click();
+      document.body.removeChild(newDownloadLink);
+    }
   });
-
-  function startAnimation() {
-    downloadLink.classList.add("animation");
-  }
-
-  function startDownload() {
-    downloadLink.classList.remove("animation");
-    const newDownloadLink = document.createElement("a");
-    newDownloadLink.href = downloadLink.href;
-    newDownloadLink.download = downloadLink.download;
-
-    document.body.appendChild(newDownloadLink);
-    newDownloadLink.click();
-    document.body.removeChild(newDownloadLink);
-  }
 </script>
+
+
 <style>
   button,
   a {
