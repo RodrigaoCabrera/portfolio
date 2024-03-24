@@ -1,24 +1,29 @@
 ---
 interface Props {
   text: string;
-  mode: string;
+  size: string;
 }
-const { text, mode }: Props = Astro.props;
+const { text, size }: Props = Astro.props;
 ---
 
-<span class={mode}>{text}</span>
+<span class={size}>{text}</span>
 
 <style>
   span {
     display: inline-block;
-    background-color: var(--accent);
+    background-color: var(--secondary-color);
     border-radius: var(--secondary-border-radius);
-    color: var(--dark-color);
+    color: var(--primary-color);
     scroll-snap-align: start;
   }
   span.large {
-    padding: 5px 16px;
+    padding: 6px 16px;
     font: var(--l-medium);
+  }
+  span.medium {
+    padding: 4px 10px;
+    font: var(--s-medium);
+    border-radius: 5px;
   }
   span.mini {
     padding: 3px 8px;
