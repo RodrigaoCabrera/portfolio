@@ -4,6 +4,7 @@ interface Props {
   type?: string;
   href?: string;
   fileName?: string;
+  hasAnimation?: boolean;
 }
 
 const { text, type, href, fileName } = Astro.props;
@@ -11,25 +12,33 @@ const { text, type, href, fileName } = Astro.props;
 
 <>
   {
-     href ? 
-    <a class=`${type}` href={href} download={fileName} id={fileName ? 'downloadLink' : 'link'} aria-label="descargar cv">
-      <slot name="before-text" />
-      <span class="textButton">{text}</span>
-      <slot name="after-text" />
-    </a> : 
-    <button class=`${type}` aria-label="Contactar">
-      <slot name="before-text" />
-      <span class="textButton">{text}</span>
-      <slot name="after-text" />
-    </button>
-    
+    href ? (
+      <a
+        class={`${type}`}
+        href={href}
+        download={fileName}
+        id={fileName ? "downloadLink" : "link"}
+        aria-label="descargar cv"
+      >
+        <slot name="before-text" />
+        <span class="textButton">{text}</span>
+        <slot name="after-text" />
+      </a>
+    ) : (
+      <button class={`${type}`} aria-label="Contactar">
+        <slot name="before-text" />
+        <span class="textButton">{text}</span>
+        <slot name="after-text" />
+      </button>
+    )
   }
-  
 </>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
-    const downloadLink = document.getElementById("downloadLink") as HTMLAnchorElement;
+  document.addEventListener("astro:page-load", () => {
+    const downloadLink = document.getElementById(
+      "downloadLink"
+    ) as HTMLAnchorElement;
 
     downloadLink.addEventListener("click", function (event) {
       // Prevenir la descarga inmediata
@@ -44,8 +53,8 @@ const { text, type, href, fileName } = Astro.props;
 
     function startAnimation() {
       downloadLink.classList.add("animation");
-      
-      console.log(downloadLink.classList)
+
+      console.log(downloadLink.classList);
     }
 
     function startDownload() {
@@ -60,7 +69,6 @@ const { text, type, href, fileName } = Astro.props;
     }
   });
 </script>
-
 
 <style>
   button,
@@ -78,44 +86,53 @@ const { text, type, href, fileName } = Astro.props;
     justify-self: center;
     position: relative;
     overflow: hidden;
-
-    animation: rounded-button linear both;
-    animation-timeline: scroll(root);
-    animation-range: 270px 275px;
+    text-decoration: none;
   }
   button.outline,
   a.outline {
     background-color: var(--primary-color);
     border: 1px solid var(--accent);
+    text-decoration: none;
   }
   span.textButton {
     font: var(--l-bold);
     color: var(--dark-color);
-
-    animation: hiden-text linear both;
-    animation-timeline: scroll(root);
-    animation-range: 270px 275px;
-    transition: opacity 1s ease;
   }
 
-  @keyframes rounded-button {
-    to {
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      margin-left: auto;
-      margin-right: 16px;
+  a,
+  button {
+    container-name: button;
+  }
+
+  @container style(--hasAnimation: true) {
+    button,
+    a {
+      animation: rounded-button linear both;
+      animation-timeline: scroll(root);
+      animation-range: 270px 275px;
     }
-  }
-  @keyframes hiden-text {
-    to {
-      opacity: 0;
-      display: none;
+    span.textButton {
+      animation: hiden-text linear both;
+      animation-timeline: scroll(root);
+      animation-range: 270px 275px;
+      transition: opacity 1s ease;
     }
-  }
 
-  a {
-    text-decoration: none;
+    @keyframes rounded-button {
+      to {
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        margin-left: auto;
+        margin-right: 16px;
+      }
+    }
+    @keyframes hiden-text {
+      to {
+        opacity: 0;
+        display: none;
+      }
+    }
   }
 </style>
 

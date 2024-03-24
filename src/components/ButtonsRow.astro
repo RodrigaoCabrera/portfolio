@@ -8,7 +8,7 @@ import DownloadIcon from "../icons/DownloadIcon.astro";
 import ArrowIcon from "../icons/ArrowIcon.astro";
 ---
 
-<section class="buttonsContainer">
+<section class="buttonsContainer" style="--hasAnimation: true">
   <div id="buttonsRow">
     <Button text="Contactar" href="#contact">
       <ContactIcon slot="before-text" width="25" height="25" fill="#4F7396" />
@@ -42,29 +42,36 @@ import ArrowIcon from "../icons/ArrowIcon.astro";
   section {
     height: 64px;
   }
-  div {
+  div#buttonsRow {
     display: grid;
     grid-template-columns: 50% 50%;
     justify-content: center;
     gap: 10px;
     padding: 12px 0;
-    z-index: 1000;
-    top: 0;
-
-    animation: reduce-buttons linear forwards;
-    animation-timeline: scroll(root);
-    animation-range: 280px 315px;
   }
 
-  @keyframes reduce-buttons {
-    to {
-      width: 45px;
-      display: flex;
-      flex-direction: column;
-      margin-left: auto;
-      position: fixed;
-      right: 16px;
-      top: 54px;
+  div#buttonsRow {
+    container-name: button;
+  }
+
+  @container style(--hasAnimation: true) {
+    div#buttonsRow {
+      z-index: 1000;
+      top: 0;
+      animation: reduce-buttons linear forwards;
+      animation-timeline: scroll(root);
+      animation-range: 280px 315px;
+    }
+    @keyframes reduce-buttons {
+      to {
+        width: 45px;
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        position: fixed;
+        right: 16px;
+        top: 54px;
+      }
     }
   }
 </style>
