@@ -34,7 +34,7 @@ const { title, fullImage, type, technologies } = Astro.props;
   <main>
     <article>
       <SectionTitle title={title} isH1={true} />
-      <Badge mode="mini" text="web page" />
+      <Badge size="mini" text={type} />
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente
         adipisci eaque, unde, dolor voluptatibus omnis optio ab inventore harum
@@ -47,7 +47,7 @@ const { title, fullImage, type, technologies } = Astro.props;
       <div>
         {
           technologies?.map((tecnology: string) => (
-            <Badge text={tecnology} mode="large" />
+            <Badge text={tecnology} size="large" />
           ))
         }
       </div>
