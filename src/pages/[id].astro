@@ -60,7 +60,7 @@ const { title, fullImage, type, technologies } = Astro.props;
       >
     </section>
   </main>
-  <style is:inline>
+  <style>
     main {
       width: min(888px, 100% - 32px);
       margin-inline: auto;
@@ -122,6 +122,12 @@ const { title, fullImage, type, technologies } = Astro.props;
       animation-timeline: scroll(root);
       animation-range: 270px 275px;
       transition: opacity 1s ease;
+    }
+
+    @keyframes slideUp {
+      to {
+        background-color: red;
+      }
     }
   </style>
 </Layout>
