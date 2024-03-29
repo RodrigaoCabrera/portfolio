@@ -3,6 +3,7 @@ import projects from "../data/projects";
 
 /* Astro components */
 import { Image } from "astro:assets";
+import { fade } from "astro:transitions";
 
 /* Components */
 import Layout from "../layouts/Layout.astro";
@@ -31,7 +32,7 @@ const { title, fullImage, type, technologies } = Astro.props;
     />
   </section>
 
-  <main>
+  <main transition:animate={fade({ duration: ".6s" })}>
     <article>
       <SectionTitle title={title} isH1={true} />
       <Badge size="mini" text={type} />
@@ -70,6 +71,9 @@ const { title, fullImage, type, technologies } = Astro.props;
     section.callToActionButtons {
       margin-top: 16px;
     }
+    img {
+      width: 100%;
+    }
     span.projectType {
       display: inline-block;
       padding: 3px 8px;
@@ -83,12 +87,13 @@ const { title, fullImage, type, technologies } = Astro.props;
     p {
       font: var(--xl-regular);
       color: var(--dark-color);
-      margin: 0;
+      margin: 16px 0 0;
     }
 
     .technologies div {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 5px;
     }
 
     section.callToActionButtons {
@@ -122,12 +127,6 @@ const { title, fullImage, type, technologies } = Astro.props;
       animation-timeline: scroll(root);
       animation-range: 270px 275px;
       transition: opacity 1s ease;
-    }
-
-    @keyframes slideUp {
-      to {
-        background-color: red;
-      }
     }
   </style>
 </Layout>
