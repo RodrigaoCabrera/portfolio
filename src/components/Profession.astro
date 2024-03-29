@@ -1,0 +1,62 @@
+---
+interface Props {
+  name: string;
+  profession: string;
+  location: string;
+}
+
+const { name, profession, location }: Props = Astro.props;
+---
+
+<article>
+  <h2>{name}</h2>
+  <h1>{profession}</h1>
+  <p>{location}</p>
+</article>
+<style>
+  h1 {
+    font: var(--h1);
+    color: var(--dark-color);
+    margin: 0;
+    text-align: center;
+
+    animation: reduce linear both;
+    animation-timeline: scroll(root);
+    animation-range: 150px 200px;
+  }
+  h2 {
+    display: none;
+  }
+  p {
+    font: var(--xl-regular);
+    color: var(--secondary-color);
+    margin: 0;
+    text-align: center;
+  }
+
+  @keyframes reduce {
+    to {
+      scale: 70%;
+      z-index: -1;
+    }
+  }
+
+  /* DESKTOP */
+  @media (min-width: 768px) {
+    article {
+      h1,
+      p {
+        text-align: start;
+      }
+
+      h2 {
+        display: block;
+        font: var(--h2);
+        color: var(--accent-color);
+        font-weight: 500;
+        line-height: 32px;
+        margin: 0;
+      }
+    }
+  }
+</style>

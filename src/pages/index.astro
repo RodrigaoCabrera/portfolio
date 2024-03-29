@@ -8,6 +8,7 @@ import Skills from "../components/Skills.astro";
 import Experience from "../components/Experience.astro";
 import Projects from "../components/Projects.astro";
 import SocialNetwork from "../components/SocialNetwork.astro";
+import Profession from "../components/Profession.astro";
 ---
 
 <Layout
@@ -16,11 +17,20 @@ import SocialNetwork from "../components/SocialNetwork.astro";
   animateHeader={true}
 >
   <main>
-    <Profile profession="Frontend Developer" location="San Francisco, CA" />
+    <section class="aboutMeContainer">
+      <Profile profession="Frontend Developer" location="San Francisco, CA" />
 
-    <ButtonsRow />
+      <Profession
+        name="Rodrigo Cabrera"
+        profession="Frontend developer"
+        location="San Francisco, CA"
+      />
+    </section>
 
-    <AboutMe />
+    <article>
+      <AboutMe />
+      <ButtonsRow />
+    </article>
 
     <Skills />
 
@@ -34,7 +44,16 @@ import SocialNetwork from "../components/SocialNetwork.astro";
 
 <style>
   main {
-    width: min(888px, 100% - 32px);
+    width: min(46rem, 100% - 32px);
     margin-inline: auto;
+  }
+
+  /* DESKTOP */
+  @media (min-width: 678px) {
+    section.aboutMeContainer {
+      display: flex;
+      align-items: center;
+      gap: 0 15px;
+    }
   }
 </style>
