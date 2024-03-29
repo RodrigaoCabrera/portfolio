@@ -1,7 +1,7 @@
 ---
 interface Props {
   text: string;
-  type?: string;
+  type: string;
   href?: string;
   fileName?: string;
   hasAnimation?: boolean;
@@ -87,6 +87,11 @@ const { text, type, href, fileName } = Astro.props;
     position: relative;
     overflow: hidden;
     text-decoration: none;
+    box-sizing: border-box;
+
+    transition:
+      background-color 0.2s linear,
+      border-width 0.2s linear;
   }
   button.outline,
   a.outline {
@@ -99,6 +104,19 @@ const { text, type, href, fileName } = Astro.props;
     color: var(--dark-color);
   }
 
+  :is(a.primary, button.primary):hover {
+    background-color: var(--secondary-color);
+
+    span.textButton {
+      color: var(--primary-color);
+    }
+    svg {
+      fill: var(--primary-color);
+    }
+  }
+  :is(a.outline, button.outline):hover {
+    border-width: 2px;
+  }
   a,
   button {
     container-name: button;
