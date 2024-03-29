@@ -48,14 +48,16 @@ import ProjectsIcon from "../icons/ProjectsIcon.astro";
 
 <style>
   footer {
-    height: 53px;
+    height: 74px;
     margin-top: 16px;
   }
   section {
     position: fixed;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    translate: -50% 0;
     width: 100%;
+    max-width: 46rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -84,5 +86,15 @@ import ProjectsIcon from "../icons/ProjectsIcon.astro";
   div#projects.active svg {
     stroke: var(--dark-color);
     fill: none;
+  }
+
+  /* DESKTOP */
+  @media (min-width: 768px) {
+    section {
+      border: 1px solid var(--accent);
+      border-bottom: none;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      padding: 8px;
+    }
   }
 </style>
