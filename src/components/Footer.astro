@@ -83,7 +83,7 @@ import ProjectsIcon from "../icons/ProjectsIcon.astro";
   div.active svg {
     fill: var(--dark-color);
   }
-  :is(div#projects.active, div#contact.active) svg {
+  :is(div#projects, div#contact, div#home).active svg {
     stroke: var(--dark-color);
     fill: none;
   }
