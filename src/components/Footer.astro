@@ -1,5 +1,5 @@
 ---
-import HomeIcon from "../icons/HomeIcon.astro";
+import UserIcon from "../icons/UserIcon.astro";
 import ContactIcon from "../icons/ContactIcon.astro";
 import ExperienceIcon from "../icons/ExperienceIcon.astro";
 import ProjectsIcon from "../icons/ProjectsIcon.astro";
@@ -9,7 +9,7 @@ import ProjectsIcon from "../icons/ProjectsIcon.astro";
   <section>
     <a href="#home" aria-label="ir a inicio">
       <div class="icon" id="home">
-        <HomeIcon width="25" height="25" fill="#4f7396" />
+        <UserIcon width="25" height="25" fill="none" stroke="#4f7396" />
       </div>
     </a>
     <a href="#experience" aria-label="ir a sección de experiencia">
@@ -24,7 +24,7 @@ import ProjectsIcon from "../icons/ProjectsIcon.astro";
     </a>
     <a href="#contact" aria-label="ir a sección de contacto">
       <div class="icon" id="contact">
-        <ContactIcon width="25" height="25" fill="#4f7396" />
+        <ContactIcon width="25" height="25" stroke="#4f7396" />
       </div>
     </a>
   </section>
@@ -83,7 +83,7 @@ import ProjectsIcon from "../icons/ProjectsIcon.astro";
   div.active svg {
     fill: var(--dark-color);
   }
-  div#projects.active svg {
+  :is(div#projects.active, div#contact.active) svg {
     stroke: var(--dark-color);
     fill: none;
   }
@@ -92,8 +92,8 @@ import ProjectsIcon from "../icons/ProjectsIcon.astro";
   @media (min-width: 768px) {
     section {
       border: 1px solid var(--accent);
-      border-bottom: none;
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      bottom: 8px;
+      border-radius: var(--border-radius);
       padding: 8px;
     }
   }
