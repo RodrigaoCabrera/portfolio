@@ -1,5 +1,6 @@
 ---
 /* Icons */
+import EmailIcon from "../icons/EmailIcon.astro";
 import GithubIcon from "../icons/GithubIcon.astro";
 import LinkedinIcon from "../icons/LinkedinIcon.astro";
 
@@ -10,6 +11,13 @@ import ContactLinks from "./ContactLinks.astro";
 
 <section>
   <SectionTitle title="Contacto" />
+  <ContactLinks
+    link="mailto:rodrigod33d@gmail.com"
+    user="rodrigod33d@gmail.com"
+    socialNetworkName="Email"
+  >
+    <EmailIcon width="24" height="24" stroke="#0d141c" fill="none" />
+  </ContactLinks>
   <ContactLinks
     link="https://github.com/RodrigaoCabrera"
     user="rodrigaocabrera"
