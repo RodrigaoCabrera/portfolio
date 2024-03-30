@@ -37,7 +37,7 @@ const { text, animate = false }: Props = Astro.props;
     border-radius: var(--border-radius);
     position: absolute;
     z-index: 101;
-    left: 6px;
+    left: calc((100vw - min(46rem, 100% - 32px)) / 2);
     height: calc(100% - 10px);
     width: 50px;
     margin: 5px 0;
