@@ -67,7 +67,7 @@ import ArrowIcon from "../icons/ArrowIcon.astro";
       top: 0;
       animation: reduce-buttons linear forwards;
       animation-timeline: scroll(root);
-      animation-range: 280px 315px;
+      animation-range: 355px 365px;
     }
     @keyframes reduce-buttons {
       to {
@@ -76,7 +76,7 @@ import ArrowIcon from "../icons/ArrowIcon.astro";
         flex-direction: column;
         margin-left: auto;
         position: fixed;
-        right: 16px;
+        right: calc((100vw - min(46rem, 100% - 32px)) / 2);
         top: 54px;
       }
     }
