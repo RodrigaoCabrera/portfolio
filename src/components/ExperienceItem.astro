@@ -1,13 +1,16 @@
 ---
 import ExperienceIcon from "../icons/ExperienceIcon.astro";
 interface Props {
-  title: string;
-  description: string;
-  status?: string;
+  role: string;
+  company_address: string;
+  company_name: string
+  start_date: string;
+  end_date?: string;
+  is_current_job?: boolean;
 }
 
-const { title, description, status }: Props = Astro.props;
-const iconFillColor = status === "active" ? "currentColor" : "#4f7396";
+const { role, company_address, company_name, start_date, end_date, is_current_job }: Props = Astro.props;
+const iconFillColor = is_current_job ? "currentColor" : "#4f7396";
 ---
 
 <section>
@@ -15,10 +18,12 @@ const iconFillColor = status === "active" ? "currentColor" : "#4f7396";
     <ExperienceIcon width="24" height="25" fill={iconFillColor} />
   </div>
   <div class="experienceContent">
-    <h3>{title}</h3>
-    <p>{description}</p>
+    <small>{start_date}</small> - <small>{end_date ? end_date : "actualidad"}</small>
+    <h3>{role}</h3>
+    <i>{company_name}</i>
+    <p>{company_address}</p>
   </div>
-  <div class=`experienceDot ${status}`></div>
+  <div class=`experienceDot ${is_current_job ? "active": ""}`></div>
 </section>
 
 <style>
@@ -35,17 +40,20 @@ const iconFillColor = status === "active" ? "currentColor" : "#4f7396";
     border-radius: var(--secondary-border-radius);
     display: flex;
   }
+  small {
+    opacity: 70%;
+  }
 
   h3 {
     font: var(--xl-medium);
     color: var(--dark-color);
-    margin: 0 0 8px;
+    margin: 5px 0 0;
     line-height: 12px;
   }
   p {
     font: var(--l-regular);
     color: var(--secondary-color);
-    margin: 0;
+    margin: 8px 0 5px;
   }
 
   .experienceDot {
@@ -53,6 +61,7 @@ const iconFillColor = status === "active" ? "currentColor" : "#4f7396";
     height: 12px;
     border-radius: 50px;
     background-color: var(--accent);
+    margin-left: auto;
   }
   .experienceDot.active {
     animation: pulse 2s infinite;

@@ -1,27 +1,47 @@
 ---
 import SectionTitle from "./SectionTitle.astro";
 import ExperienceItem from "../components/ExperienceItem.astro";
+import { getExperience } from "../libs/get-experience";
+
+const experience = await getExperience("?fields=id&fields=role&fields=company_name&fields=company_address&fields=start_date&fields=end_date&fields=is_current_job");
+
+const experienceData = experience.data.sort((a, b) =>{
+  return new Date(b.start_date).getTime() - new Date(a.start_date).getTime()}
+)
+console.log({experience})
 ---
 
 <article id="experience">
   <SectionTitle title="Experiencia laboral" />
-  <ExperienceItem
-    title="Desarrollador de software"
-    description="San Francisco Bay area. Ejemplo de empresa"
-    status="active"
-  />
-  <ExperienceItem
-    title="Ingeniero de software"
-    description="San Francisco Bay area. Ejemplo de empresa"
-  />
-  <ExperienceItem
-    title="Ingeniero de software"
-    description="San Francisco Bay area. Ejemplo de empresa"
-  />
+  <section class="experienceContainer">
+    {
+      experienceData.map(({
+        role,
+        company_address,
+        company_name,
+        start_date,
+        end_date,
+        is_current_job
+      }) => (
+        <ExperienceItem
+        role={role};
+        company_address={company_address}
+        company_name={company_name}
+        start_date={start_date}
+        end_date={end_date}
+        is_current_job={is_current_job}
+        />
+      ))
+    }
+  </section>
 </article>
 
 <style>
   article {
     margin: 16px 0;
+  }
+
+  .experienceContainer {
+    max-width: 526px;
   }
 </style>
