@@ -1,5 +1,6 @@
 ---
 import ExperienceIcon from "../icons/ExperienceIcon.astro";
+import removeDayInTheDate from "../utils/removeDayInTheDate";
 interface Props {
   role: string;
   company_address: string;
@@ -11,6 +12,8 @@ interface Props {
 
 const { role, company_address, company_name, start_date, end_date, is_current_job }: Props = Astro.props;
 const iconFillColor = is_current_job ? "currentColor" : "#4f7396";
+
+const [startJob, endJob] = removeDayInTheDate(start_date, end_date)
 ---
 
 <section>
@@ -18,7 +21,7 @@ const iconFillColor = is_current_job ? "currentColor" : "#4f7396";
     <ExperienceIcon width="24" height="25" fill={iconFillColor} />
   </div>
   <div class="experienceContent">
-    <small>{start_date}</small> - <small>{end_date ? end_date : "actualidad"}</small>
+    <small>{startJob}</small> - <small>{end_date ? endJob : "actualidad"}</small>
     <h3>{role}</h3>
     <i>{company_name}</i>
     <p>{company_address}</p>
@@ -49,6 +52,9 @@ const iconFillColor = is_current_job ? "currentColor" : "#4f7396";
     color: var(--dark-color);
     margin: 5px 0 0;
     line-height: 12px;
+  }
+  i {
+    font-size: 14px;
   }
   p {
     font: var(--l-regular);

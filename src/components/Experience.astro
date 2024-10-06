@@ -8,7 +8,6 @@ const experience = await getExperience("?fields=id&fields=role&fields=company_na
 const experienceData = experience.data.sort((a, b) =>{
   return new Date(b.start_date).getTime() - new Date(a.start_date).getTime()}
 )
-console.log({experience})
 ---
 
 <article id="experience">
