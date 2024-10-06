@@ -6,6 +6,9 @@ import Button from "../components/Button.astro";
 import ContactIcon from "../icons/ContactIcon.astro";
 import DownloadIcon from "../icons/DownloadIcon.astro";
 import ArrowIcon from "../icons/ArrowIcon.astro";
+import { getDevProfile } from "../libs/get-dev-profile";
+const { pdf } = await getDevProfile("?populate=curriculum_vitae");
+
 ---
 
 <section class="buttonsContainer" style="--hasAnimation: true">
@@ -22,7 +25,7 @@ import ArrowIcon from "../icons/ArrowIcon.astro";
     <Button
       text="Descargar Cv"
       type="outline"
-      href="../../public/Frontend-Web-developer-Rodrigo-Cabrera.pdf"
+      href={pdf}
       fileName="Frontend Web developer - Rodrigo Cabrera"
     >
       <DownloadIcon

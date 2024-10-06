@@ -1,12 +1,14 @@
 ---
 import { Image } from "astro:assets";
-import image from "../../public/profile.png";
+import { getDevProfile } from "../libs/get-dev-profile";
+
+const { avatar } = await getDevProfile("?populate=avatar");
 ---
 
 <section>
   <div class="profileImageContainer">
     <Image
-      src={image}
+      src={avatar}
       alt="foto de perfil"
       width={64}
       height={64}

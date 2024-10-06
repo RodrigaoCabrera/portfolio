@@ -1,13 +1,17 @@
 ---
+import { getDevProfile } from "../libs/get-dev-profile";
 import SectionTitle from "./SectionTitle.astro";
+
+const devProfile = await getDevProfile("?fields=profileDescription");
+
+const { profileDescription } = devProfile.data
+
 ---
 
 <article>
   <SectionTitle title="Sobre mi" />
   <p>
-    Soy un desarrollador de software con experiencia en el desarrollo de
-    aplicaciones web y móviles. Actualmente me estoy especializando en
-    tecnologías de front-end.
+    {profileDescription}
   </p>
 </article>
 

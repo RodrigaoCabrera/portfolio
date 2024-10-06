@@ -9,20 +9,25 @@ import Experience from "../components/Experience.astro";
 import Projects from "../components/Projects.astro";
 import SocialNetwork from "../components/SocialNetwork.astro";
 import Profession from "../components/Profession.astro";
+import { getDevProfile } from "../libs/get-dev-profile";
+
+const devProfile = await getDevProfile("?fields=devName&fields=jobPosition");
+
+const { devName, jobPosition } = devProfile.data
 ---
 
 <Layout
-  title="Rodrigo Cabrera"
-  headerText="Rodrigo Cabrera"
+  title={devName}
+  headerText={devName}
   animateHeader={true}
 >
   <main>
     <section class="aboutMeContainer">
-      <Profile profession="Frontend Developer" location="San Francisco, CA" />
+      <Profile profession={jobPosition} location="San Francisco, CA" />
 
       <Profession
-        name="Rodrigo Cabrera"
-        profession="Frontend developer"
+        name={devName}
+        profession={jobPosition}
         location="San Francisco, CA"
       />
     </section>
