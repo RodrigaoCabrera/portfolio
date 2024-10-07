@@ -1,6 +1,7 @@
 ---
 import SectionTitle from "./SectionTitle.astro";
 import Badge from "./Badge.astro";
+import getTechnologies from "../libs/get-technologies";
 const skills = [
   "HTML5",
   "CSS3",
@@ -9,12 +10,14 @@ const skills = [
   "Typescript",
   "GraphQl",
 ];
+
+const technologies = await getTechnologies();
 ---
 
 <article>
   <SectionTitle title="Skills" />
   <section>
-    {skills.map((tecnology) => <Badge text={tecnology} size="medium" />)}
+    {technologies.data.map((tecnology) => <Badge text={tecnology.name} size="medium" />)}
   </section>
 </article>
 
