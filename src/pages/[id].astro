@@ -8,30 +8,7 @@ import Layout from "../layouts/Layout.astro";
 import Badge from "../components/Badge.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import getProjects from "../libs/get-projects";
-//import projects from "../data/projects";
-interface Project {
-  id: number;
-  documentId: string;
-  title: string;
-  description: string;
-  type: string;
-  github_link: string;
-  deploy_link: string;
-  technologies: Technology[];
-  image: Image[];
-}
-
-interface Image {
-  id: number;
-  documentId: string;
-  url: string;
-}
-
-interface Technology {
-  id: number;
-  documentId: string;
-  name: string;
-}
+import type { Project, Technology } from "../types/project";
 
 const STRAPI_URL = import.meta.env.STRAPI_URL;
 

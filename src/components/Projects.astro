@@ -2,13 +2,10 @@
 import SectionTitle from "./SectionTitle.astro";
 import Tabs from "./Tabs.astro";
 import ProjectsCards from "./ProjectsCards.astro";
-const tabNames = ["Todas", "Aplicaciones Web", "Páginas", "Juegos"];
 ---
 
 <article id="projects">
   <SectionTitle title="Proyectos" />
 
-  <Tabs tabNames={tabNames} />
-
-  <ProjectsCards />
+  <ProjectsCards server:defer />
 </article>

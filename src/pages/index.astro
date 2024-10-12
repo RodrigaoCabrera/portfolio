@@ -13,14 +13,10 @@ import { getDevProfile } from "../libs/get-dev-profile";
 
 const devProfile = await getDevProfile("?fields=devName&fields=jobPosition");
 
-const { devName, jobPosition } = devProfile.data
+const { devName, jobPosition } = devProfile.data;
 ---
 
-<Layout
-  title={devName}
-  headerText={devName}
-  animateHeader={true}
->
+<Layout title={devName} headerText={devName} animateHeader={true}>
   <main>
     <section class="aboutMeContainer">
       <Profile profession={jobPosition} location="San Francisco, CA" />
