@@ -1,0 +1,77 @@
+<div class="filter-buttons">
+  <div class="skeleton-button"></div>
+  <div class="skeleton-button"></div>
+  <div class="skeleton-button"></div>
+  <div class="skeleton-button"></div>
+  <div class="skeleton-button"></div>
+</div>
+
+<div class="grid-container">
+  <div class="skeleton-card">
+    <div class="text-placeholder"></div>
+  </div>
+  <div class="skeleton-card">
+    <div class="text-placeholder"></div>
+  </div>
+  <div class="skeleton-card">
+    <div class="text-placeholder"></div>
+  </div>
+  <div class="skeleton-card">
+    <div class="text-placeholder"></div>
+  </div>
+  <div class="skeleton-card">
+    <div class="text-placeholder"></div>
+  </div>
+</div>
+
+<style>
+  .filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+  }
+  .filter-buttons .skeleton-button {
+    width: 100px;
+    height: 32px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    animation: skeleton-loading 1.5s infinite ease-in-out;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .skeleton-card {
+    border-radius: 10px;
+    height: 258px;
+  }
+  .skeleton-card::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 229px;
+    background-color: #d4d4d4;
+    border-radius: 10px;
+  }
+  .skeleton-card .text-placeholder {
+    margin-top: 10px;
+    width: 80%;
+    height: 17px;
+    background-color: #d4d4d4;
+    border-radius: 5px;
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: #e0e0e0;
+    }
+    50% {
+      background-color: #f0f0f0;
+    }
+    100% {
+      background-color: #e0e0e0;
+    }
+  }
+</style>

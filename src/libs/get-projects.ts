@@ -9,7 +9,7 @@ export async function getProjects(queryParams: string = "") {
   }).then((res) => res.json());
 
   // delay to response
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  await new Promise((resolve) => setTimeout(resolve, 10000));
   console.log("test");
   return res;
 }
