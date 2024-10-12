@@ -1,7 +1,4 @@
 ---
-export const prerender = true
-import projects from "../data/projects";
-
 /* Astro components */
 import { Image } from "astro:assets";
 import { fade } from "astro:transitions";
@@ -10,24 +7,60 @@ import { fade } from "astro:transitions";
 import Layout from "../layouts/Layout.astro";
 import Badge from "../components/Badge.astro";
 import SectionTitle from "../components/SectionTitle.astro";
+import getProjects from "../libs/get-projects";
+//import projects from "../data/projects";
+interface Project {
+  id: number;
+  documentId: string;
+  title: string;
+  description: string;
+  type: string;
+  github_link: string;
+  deploy_link: string;
+  technologies: Technology[];
+  image: Image[];
+}
+
+interface Image {
+  id: number;
+  documentId: string;
+  url: string;
+}
+
+interface Technology {
+  id: number;
+  documentId: string;
+  name: string;
+}
+
+const STRAPI_URL = import.meta.env.STRAPI_URL;
 
 export async function getStaticPaths() {
-  return projects.map(({ id, title, fullImage, type, technologies }) => {
-    return {
-      params: { id },
-      props: { title, fullImage, type, technologies },
-    };
-  });
+  const projects = await getProjects(
+    "?populate[image][fields][0]=url&fields[0]=title&fields[1]=description&fields[2]=type&fields[3]=github_link&fields[4]=deploy_link&populate[technologies][fields][5]=name"
+  );
+
+  return projects.data.map(
+    ({ id, title, image, type, github_link, deploy_link, technologies }) => {
+      return {
+        params: { id },
+        props: { title, image, type, github_link, deploy_link, technologies },
+      };
+    }
+  );
 }
 
 const { id } = Astro.params;
-const { title, fullImage, type, technologies } = Astro.props;
+const { title, image, type, github_link, deploy_link, technologies }: Project =
+  Astro.props;
+const projectImage = `${STRAPI_URL}${image[1].url}` as string;
 ---
 
 <Layout title="Proyectos" headerText="Proyectos">
   <section>
     <Image
-      src={fullImage}
+      inferSize={true}
+      src={projectImage}
       alt="Captura pantalla de página de destino"
       transition:name=`project-image-${id}`
     />
@@ -48,16 +81,18 @@ const { title, fullImage, type, technologies } = Astro.props;
       <SectionTitle title="Tecnologías" />
       <div>
         {
-          technologies?.map((tecnology: string) => (
-            <Badge text={tecnology} size="large" />
+          technologies?.map((tecnology: Technology) => (
+            <Badge text={tecnology.name} size="large" />
           ))
         }
       </div>
     </section>
 
     <section class="callToActionButtons">
-      <a href="#" class="btn"><span class="textButton">Ver Proyecto</span></a>
-      <a class="outline btn" href="#"
+      <a href={deploy_link} class="btn"
+        ><span class="textButton">Ver Proyecto</span></a
+      >
+      <a class="outline btn" href={github_link}
         ><span class="textButton">Ver Código</span></a
       >
     </section>
