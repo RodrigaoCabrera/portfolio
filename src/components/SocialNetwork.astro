@@ -7,32 +7,39 @@ import LinkedinIcon from "../icons/LinkedinIcon.astro";
 /* Components */
 import SectionTitle from "./SectionTitle.astro";
 import ContactLinks from "./ContactLinks.astro";
+import { getContacts } from "../libs/get-contacts";
+
+const contacts = await getContacts(
+  "?fields=email&fields=service&fields=user_name&sort[1]=service"
+);
+console.log({ contacts });
 ---
 
 <section>
   <SectionTitle title="Contacto" />
-  <ContactLinks
-    link="mailto:rodrigod33d@gmail.com"
-    user="rodrigod33d@gmail.com"
-    socialNetworkName="Email"
-  >
-    <EmailIcon width="24" height="24" stroke="#0d141c" fill="none" />
-  </ContactLinks>
-  <ContactLinks
-    link="https://github.com/RodrigaoCabrera"
-    user="rodrigaocabrera"
-    socialNetworkName="Github"
-  >
-    <GithubIcon width="24" height="24" />
-  </ContactLinks>
-
-  <ContactLinks
-    link="https://www.linkedin.com/in/rodrigocabrera19/"
-    user="rodrigocabrera19"
-    socialNetworkName="LinkedIn"
-  >
-    <LinkedinIcon width="24" height="24" fill="none" stroke="#0d141c" />
-  </ContactLinks>
+  {
+    contacts.data.map((contact) => {
+      const Icon = {
+        Email: () => (
+          <EmailIcon width="24" height="24" stroke="#0d141c" fill="none" />
+        ),
+        GitHub: () => <GithubIcon width="24" height="24" />,
+        LinkedIn: () => (
+          <LinkedinIcon width="24" height="24" fill="none" stroke="#0d141c" />
+        ),
+      }[contact.service];
+      return (
+        <ContactLinks
+          link={contact.email}
+          user={contact.user_name}
+          email={contact.email}
+          socialNetworkName={contact.service}
+        >
+          {Icon()}
+        </ContactLinks>
+      );
+    })
+  }
 </section>
 
 <style>
