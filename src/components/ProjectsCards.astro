@@ -1,13 +1,18 @@
 ---
-import projects from "../data/projects";
 import Card from "./Card.astro";
+import getProjects from "../libs/get-projects";
+const STRAPI_URL = import.meta.env.STRAPI_URL
+
+const projects = await getProjects("?populate[image][fields][0]=url&fields[0]=title&fields[1]=description&fields[2]=type&fields[3]=github_link&fields[4]=deploy_link");
 ---
 
 <section>
   {
-    projects.map(({ image, title, type, id }) => (
-      <Card image={image} title={title} type={type} id={id} />
-    ))
+    projects.data.map(({ image, title, type, id }) => {
+      const projectImage = `${STRAPI_URL}${image[0].url}`
+      return (
+      <Card image={projectImage} title={title} type={type} id={id} />
+    )})
   }
 </section>
 
