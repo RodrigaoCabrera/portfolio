@@ -46,14 +46,20 @@ export default function ProjectTabs({ projects, host }: ProjectTabsProps) {
       </div>
       <div className="projects-grid">
         {filteredProjects.map((project) => (
-          <div key={project.id} className="project-card">
-            <div className="project-image">
-              <img src={`${host}${project.image[0].url}`} alt={project.title} />
+          <a href={`/${project.id}`} key={project.id}>
+            <div className="project-card">
+              <div className="project-image">
+                <img
+                  src={`${host}${project.image[0].url}`}
+                  alt={project.title}
+                  loading="lazy"
+                />
+              </div>
+              <div className="project-info">
+                <h3 className="project-title">{project.title}</h3>
+              </div>
             </div>
-            <div className="project-info">
-              <h3 className="project-title">{project.title}</h3>
-            </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>

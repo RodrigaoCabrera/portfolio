@@ -38,6 +38,10 @@
   gap: 1.5rem;
 }
 
+.projects-grid a {
+  text-decoration: none;
+}
+
 .project-card {
   overflow: hidden;
 }
@@ -50,6 +54,7 @@
   width: 100%;
   height: auto;
   object-fit: cover;
+  aspect-ratio: 1 / 1;
 }
 
 
