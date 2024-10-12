@@ -51,8 +51,7 @@ export default function ProjectTabs({ projects, host }: ProjectTabsProps) {
               <img src={`${host}${project.image[0].url}`} alt={project.title} />
             </div>
             <div className="project-info">
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
+              <h3 className="project-title">{project.title}</h3>
             </div>
           </div>
         ))}
