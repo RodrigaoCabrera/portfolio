@@ -10,5 +10,5 @@ console.log({ image: projects.data[0].image });
 ---
 
 <section>
-  <ProjectsGrid projects={projects.data} host={STRAPI_URL} client:only />
+  <ProjectsGrid projects={projects.data} host={STRAPI_URL} client:load />
 </section>
