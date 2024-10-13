@@ -6,7 +6,6 @@ const STRAPI_URL = import.meta.env.STRAPI_URL;
 const projects = await getProjects(
   "?populate[image][fields][0]=url&fields[0]=title&fields[1]=description&fields[2]=type&fields[3]=github_link&fields[4]=deploy_link"
 );
-console.log({ image: projects.data[0].image });
 ---
 
 <section>
