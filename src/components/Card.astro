@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+interface Props {
+  id: number;
+  image: string;
+  title: string;
+  type?: string;
+}
+
+const { image, title, id, type }: Props = Astro.props;
+---
+
+<a href=`/${id}`>
+  <article>
+    <div class="imageContainer">
+      <Image
+        width={173}
+        height={173}
+        src={image}
+        alt="portfolio personal"
+        loading="lazy"
+        transition:name=`project-image-${id}`
+      />
+    </div>
+    <p>{title}</p>
+  </article>
+</a>
+
+<style>
+  a {
+    text-decoration: none;
+  }
+  .imageContainer {
+    width: width: 100%;
+    height: fit-content;
+  }
+  article {
+    position: relative;
+    z-index: -1;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  p {
+    font: var(--xl-medium);
+    color: var(--dark-color);
+    margin: 0 0 8px;
+  }
+</style>
