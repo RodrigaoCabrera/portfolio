@@ -1,0 +1,64 @@
+---
+interface Props {
+  tabNames: string[] | unknown[];
+  currentType: string | unknown;
+}
+
+const { tabNames, currentType }: Props = Astro.props;
+---
+
+<section id="tab-container">
+  {
+    tabNames.map((name) => (
+      <div class="tabsContainer">
+        <button
+          class={`tab tab-link ${name === currentType ? "active" : ""}`}
+          data-id={name}
+        >
+          {name}
+        </button>
+      </div>
+    ))
+  }
+</section>
+
+<style>
+  section {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+
+  .tabsContainer {
+    scroll-snap-align: start;
+  }
+  .tab {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    width: 100%;
+    border-radius: var(--secondary-border-radius);
+    white-space: nowrap;
+    text-decoration: none;
+
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4a5568;
+    background-color: #edf2f7;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box;
+  }
+  .tab:is(:active, :hover) {
+    background-color: #e2e8f0;
+  }
+
+  .tab.active {
+    background-color: #4a5568;
+    color: white;
+  }
+</style>
