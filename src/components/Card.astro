@@ -10,37 +10,33 @@ interface Props {
 const { image, title, id, type }: Props = Astro.props;
 ---
 
-
-  <a href=`/${id}` class="card" data-type={type}>
-    <div class="imageContainer">
-      <Image
-        width={173}
-        height={173}
-        src={image}
-        alt="portfolio personal"
-        loading="lazy"
-        transition:name=`project-image-${id}`
-      />
-    </div>
-    <p>{title}</p>
-  </a>
+<a href=`/${id}` class="card" data-type={type}>
+  <picture class="imageContainer">
+    <Image
+      width={173}
+      height={173}
+      src={image}
+      alt="portfolio personal"
+      loading="eager"
+      transition:name=`project-image-${id}`
+    />
+  </picture>
+  <p>{title}</p>
+</a>
 
 <style>
   a {
     text-decoration: none;
   }
-  .imageContainer {
-    width: width: 100%;
-    height: fit-content;
-  }
-  article {
-    position: relative;
-    z-index: -1;
+  picture.imageContainer {
+    width: 100%;
+    max-width: 373px;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
   img {
-    width: 100%;
-    height: 100%;
     aspect-ratio: 1 / 1;
+    object-fit: contain;
   }
   p {
     font: var(--xl-medium);
