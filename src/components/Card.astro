@@ -10,8 +10,8 @@ interface Props {
 const { image, title, id, type }: Props = Astro.props;
 ---
 
-<a href=`/${id}`>
-  <article>
+
+  <a href=`/${id}` class="card" data-type={type}>
     <div class="imageContainer">
       <Image
         width={173}
@@ -23,8 +23,7 @@ const { image, title, id, type }: Props = Astro.props;
       />
     </div>
     <p>{title}</p>
-  </article>
-</a>
+  </a>
 
 <style>
   a {

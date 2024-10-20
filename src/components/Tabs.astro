@@ -1,26 +1,22 @@
 ---
-import { getProjectTypes } from "../libs/get-projects";
-
 interface Props {
-  queryParams: string;
+  tabNames: string[] | unknown[];
+  currentType: string | unknown;
 }
 
-const tabNames = await getProjectTypes();
-
-const { queryParams = "All" }: Props = Astro.props;
-console.log({ queryParams });
+const { tabNames, currentType }: Props = Astro.props;
 ---
 
-<section>
+<section id="tab-container">
   {
-    ["All", ...tabNames].map((name) => (
+    tabNames.map((name) => (
       <div class="tabsContainer">
-        <a
-          class={`tab ${name === queryParams ? "active" : ""}`}
-          href={name === "All" ? "/#projects" : `?type=${name}#projects`}
+        <button
+          class={`tab tab-link ${name === currentType ? "active" : ""}`}
+          data-id={name}
         >
-          <span>{name}</span>
-        </a>
+          {name}
+        </button>
       </div>
     ))
   }
@@ -39,7 +35,7 @@ console.log({ queryParams });
   .tabsContainer {
     scroll-snap-align: start;
   }
-  a.tab {
+  .tab {
     display: flex;
     align-items: center;
     height: 36px;

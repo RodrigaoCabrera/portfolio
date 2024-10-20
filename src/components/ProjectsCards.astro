@@ -1,23 +1,43 @@
 ---
+// ProjectsSection.astro
 import Card from "./Card.astro";
 import { getProjects } from "../libs/get-projects";
 import Tabs from "./Tabs.astro";
-const STRAPI_URL = import.meta.env.STRAPI_URL;
-const baseUrl = "http://localhost:4321/";
-const url = new URL(Astro.request.headers.get("referer"), baseUrl);
-console.log({ url: Astro.request.headers.get("referer") });
-const projectType = url.searchParams.get("type") || "";
+import { ViewTransitions } from "astro:transitions";
 
-const projects = await getProjects(
-  `?populate[image][fields][0]=url&fields[0]=title&fields[1]=description&fields[2]=type&fields[3]=github_link&fields[4]=deploy_link&filters[type][$contains]=${projectType}`
+const STRAPI_URL = import.meta.env.STRAPI_URL;
+
+// Fetch all projects at once
+const allProjects = await getProjects(
+  "?populate[image][fields][0]=url&fields[0]=title&fields[1]=description&fields[2]=type&fields[3]=github_link&fields[4]=deploy_link"
 );
+
+// Get unique project types
+const projectTypes = [
+  "All",
+  ...new Set(allProjects.data.map((project) => project.type)),
+];
+
+// Get current type from URL or default to 'All'
+const url = new URL(Astro.request.url);
+const currentType = url.searchParams.get("type") || "All";
+console.log({ currentType });
+// Filter projects based on current type
+const filteredProjects =
+  currentType === "All"
+    ? allProjects.data
+    : allProjects.data.filter((project) => project.type === currentType);
 ---
 
-<section>
-  <Tabs queryParams={projectType || "All"} />
-  <div>
+<head>
+  <ViewTransitions />
+</head>
+
+<section id="projects-section">
+  <Tabs tabNames={projectTypes} currentType={currentType} />
+  <div id="projects-container" transition:animate="fade">
     {
-      projects.data.map(({ image, title, type, id }) => (
+      filteredProjects.map(({ image, title, type, id }) => (
         <Card
           image={`${STRAPI_URL}${image[0].url}`}
           title={title}
@@ -29,8 +49,50 @@ const projects = await getProjects(
   </div>
 </section>
 
+<script>
+  import { navigate } from "astro:transitions/client";
+
+  function setupProjectFiltering(selectedTab: string) {
+    const tabContainer = document.getElementById("tab-container");
+    const projectsSection = document.getElementById("projects-section");
+
+    tabContainer.addEventListener("click", (event) => {
+      const target = event.target as HTMLElement;
+      if (target.classList.contains("tab-link")) {
+        const selectedType = target.getAttribute("data-id");
+        if (selectedTab === selectedType) return;
+        const newUrl = selectedType === "All" ? "/" : `/?type=${selectedType}`;
+
+        // Store the current scroll position relative to the projects section
+        const currentScroll = window.scrollY - projectsSection.offsetTop;
+
+        navigate(newUrl);
+
+        // After navigation, restore the scroll position
+        document.addEventListener(
+          "astro:after-swap",
+          () => {
+            const newProjectsSection =
+              document.getElementById("projects-section");
+            window.scrollTo({
+              top: newProjectsSection.offsetTop + currentScroll,
+              behavior: "instant",
+            });
+          },
+          { once: true }
+        );
+      }
+    });
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    const selectedTab = new URL(window.location.href).searchParams.get("type");
+    console.log({ selectedTab });
+    setupProjectFiltering(selectedTab);
+  });
+</script>
 <style>
-  div {
+  #projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(163px, 1fr));
     gap: 12px;
