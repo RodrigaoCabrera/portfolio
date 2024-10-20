@@ -10,7 +10,7 @@ import ContactLinks from "./ContactLinks.astro";
 import { getContacts } from "../libs/get-contacts";
 
 const contacts = await getContacts(
-  "?fields=email&fields=service&fields=user_name&sort[1]=service"
+  "?fields=email&fields=service&fields=user_name&sort[1]=service&fields=link"
 );
 ---
 
@@ -29,7 +29,7 @@ const contacts = await getContacts(
       }[contact.service];
       return (
         <ContactLinks
-          link={contact.email}
+          link={contact.link}
           user={contact.user_name}
           email={contact.email}
           socialNetworkName={contact.service}
