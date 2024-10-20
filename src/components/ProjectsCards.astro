@@ -3,7 +3,6 @@
 import Card from "./Card.astro";
 import { getProjects } from "../libs/get-projects";
 import Tabs from "./Tabs.astro";
-import { ViewTransitions } from "astro:transitions";
 
 const STRAPI_URL = import.meta.env.STRAPI_URL;
 
@@ -28,10 +27,6 @@ const filteredProjects =
     ? allProjects.data
     : allProjects.data.filter((project) => project.type === currentType);
 ---
-
-<head>
-  <ViewTransitions />
-</head>
 
 <section id="projects-section">
   <Tabs tabNames={projectTypes} currentType={currentType} />
