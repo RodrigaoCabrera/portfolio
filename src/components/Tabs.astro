@@ -7,10 +7,10 @@ interface Props {
 const { tabNames, currentType }: Props = Astro.props;
 ---
 
-<section id="tab-container">
+<div class="tabsContainer" id="tab-container">
   {
     tabNames.map((name) => (
-      <div class="tabsContainer">
+      <div class="tabWrapper">
         <button
           class={`tab tab-link ${name === currentType ? "active" : ""}`}
           data-id={name}
@@ -20,10 +20,10 @@ const { tabNames, currentType }: Props = Astro.props;
       </div>
     ))
   }
-</section>
+</div>
 
 <style>
-  section {
+  .tabsContainer {
     display: flex;
     gap: 8px;
     overflow-x: auto;
@@ -31,7 +31,7 @@ const { tabNames, currentType }: Props = Astro.props;
     overscroll-behavior-x: contain;
   }
 
-  .tabsContainer {
+  .tabWrapper {
     scroll-snap-align: start;
   }
   .tab {

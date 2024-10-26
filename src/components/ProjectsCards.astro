@@ -28,7 +28,7 @@ const filteredProjects =
     : allProjects.data.filter((project) => project.type === currentType);
 ---
 
-<section id="projects-section">
+<article id="projects-section">
   <Tabs tabNames={projectTypes} currentType={currentType} />
   <div id="projects-container" transition:animate="fade">
     {
@@ -42,7 +42,7 @@ const filteredProjects =
       ))
     }
   </div>
-</section>
+</article>
 
 <script>
   import { navigate } from "astro:transitions/client";
@@ -74,7 +74,7 @@ const filteredProjects =
               behavior: "instant",
             });
           },
-          { once: true }
+          { once: true },
         );
       }
     });

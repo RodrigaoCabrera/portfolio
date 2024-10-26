@@ -10,9 +10,9 @@ const experienceData = experience.data.sort((a, b) =>{
 )
 ---
 
-<article id="experience">
+<section id="experience">
   <SectionTitle title="Experiencia laboral" />
-  <section class="experienceContainer">
+  <article class="experienceContainer">
     {
       experienceData.map(({
         role,
@@ -32,8 +32,8 @@ const experienceData = experience.data.sort((a, b) =>{
         />
       ))
     }
-  </section>
-</article>
+  </article>
+</section>
 
 <style>
 
